@@ -1,0 +1,25 @@
+# Production dependencies - EXACT pins.
+# The trained artifacts in artifacts/ were produced with these versions; changing them can make
+# joblib/booster files unreadable. Keep in sync with the Dockerfile base image (Python 3.11).
+Flask==3.1.3
+flask-cors==6.0.5
+gunicorn==26.2.0
+Werkzeug==3.1.9
+python-dotenv==1.2.4
+pymongo==4.18.3
+
+# Scientific stack (pinned: model artifacts depend on these)
+numpy==2.5.3
+pandas==3.0.6
+scipy==1.18.1
+scikit-learn==1.9.1
+xgboost==3.4.1
+joblib==1.6.0
+
+# Explainability & fairness
+shap==0.53.0
+lime==0.2.0.1
+fairlearn==0.14.0
+
+# Tabular uploads
+openpyxl==3.1.5

@@ -1,0 +1,34 @@
+# Render.com blueprint: ONE service serves the REST API and the dashboard.
+# MONGO_URI and ADMIN_TOKEN are secrets and must be entered in the Render dashboard (sync: false).
+services:
+  - type: web
+    name: fairxai
+    runtime: docker
+    plan: free
+    healthCheckPath: /api/health
+    autoDeploy: true
+    envVars:
+      - key: APP_ENV
+        value: production
+      - key: MONGO_DB
+        value: fairxai
+      - key: MONGO_URI
+        sync: false
+      - key: ADMIN_TOKEN
+        sync: false
+      - key: CORS_ORIGINS
+        sync: false
+      # Never fall back to a non-persistent DB in production.
+      - key: ALLOW_MEMORY_DB
+        value: "0"
+      # Public demo: store scores/explanations only, never patient inputs.
+      - key: STORE_PREDICTION_INPUTS
+        value: "0"
+      - key: PREDICTION_RETENTION_DAYS
+        value: "90"
+      - key: WEB_CONCURRENCY
+        value: "1"
+      - key: WEB_THREADS
+        value: "4"
+      - key: LOG_LEVEL
+        value: INFO
